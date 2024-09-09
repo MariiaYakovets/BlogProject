@@ -14,9 +14,13 @@ const config: Configuration = {
 	mode: "development",
 	devServer: {
 		host: "localhost",
-		port: 8000,
+		port: 8001,
 		hot: true,
 		historyApiFallback: true,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Headers": "X-Requested-With",
+		},
 	},
 	resolve: { extensions: [".ts", ".tsx", ".js"] },
 	plugins: [

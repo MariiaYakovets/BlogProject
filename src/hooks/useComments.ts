@@ -4,8 +4,11 @@ import React, { useEffect, useState } from "react";
 interface IUseComments {
 	postId: number;
 	id: number;
-	name: string;
-	email: string;
+	title: string;
+	author: {
+		name: string,
+		email: string
+	};
 	body: string;
 }
 
@@ -19,7 +22,7 @@ function useComments(id: number) {
 			try {
 				setLoading(true);
 				let response = await axios.get(
-					`https://jsonplaceholder.typicode.com/posts/${id}/comments`
+					`http://localhost:8000/comment/allToPost/${id}`
 				);
 				setComments(response.data);
 				setError(null);

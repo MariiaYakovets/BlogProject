@@ -16,6 +16,9 @@ export default function Comments(props: ICommentsProps) {
 		loading: loading,
 	} = useComments(id ? +id : 0);
 
+
+
+
 	return (
 		<div className={styles.Comments}>
 			{loading ? (
@@ -42,12 +45,12 @@ export default function Comments(props: ICommentsProps) {
 					return (
 						<div key={comment.id} className={styles.Comment}>
 							<div className={styles.Title}>
-								<h3>{comment.name}</h3>
+								<h3>{comment.title}</h3>
 							</div>
 
 							<div className={styles.CommentData}>
 								<div className={styles.User}>
-									<p>{comment.email}</p>
+									<p>{comment.author.email}</p>
 									<img
 										src="https://cdn-icons-png.freepik.com/512/4556/4556913.png?ga=GA1.1.930059632.1710445204"
 										alt=""

@@ -19,7 +19,7 @@ function usePost(id: number) {
 			try {
 				setLoading(true);
 				const response = await axios.get(
-					`https://jsonplaceholder.typicode.com/posts/${id}/`
+					`http://localhost:8000/post/${id}/`
 				);
 				setPost(response.data);
 				setError(null);

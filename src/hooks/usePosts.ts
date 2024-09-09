@@ -21,9 +21,14 @@ function usePosts(): {
 		async function getPosts() {
 			try {
 				setLoading(true);
-				let response = await axios.get(
-					"https://jsonplaceholder.typicode.com/posts"
-				);
+				let response = await axios.get("http://localhost:8000/post/all", {
+					headers: {
+						"Content-Type": "application/json",
+						// "Access-Control-Allow-Origin": "*",
+						// "Access-Control-Allow-Headers": "X-Requested-With",
+						// "Access-Control-Allow-Credentials": "true",
+					},
+				});
 				setPosts(response.data);
 				setError(null);
 			} catch (err: AxiosError | any) {
