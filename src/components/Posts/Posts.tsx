@@ -45,6 +45,9 @@ export default function Posts(props: IPostsProps) {
 					})}
 				</div>
 			)}
+			<div className={styles.CreateButton}>
+				<Link to={'create'}>Create new Post</Link>
+			</div>
 		</div>
 	);
 }

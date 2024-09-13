@@ -9,6 +9,9 @@ import StartPage from "./StartPage/StartPage";
 import Header from "./Header/Header";
 import "./main.module.css"
 import * as styles from "./App.module.css"
+import CreatePost from "./Post/CreatePost/CreatePost";
+import Register from "./Register/Register";
+import Login from "./Login/Login";
 
 function App() {
 	return (
@@ -21,7 +24,9 @@ function App() {
 						<Route path="/posts" element={<Posts />} />
 						<Route path="/posts/my" element={<MyPosts />} />
 						<Route path="/posts/:id" element={<Post />} />
-						{/* <Route path="/posts/:id/comments" element={<Post />} /> */}
+						<Route path="/posts/create" element={<CreatePost />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/login" element={<Login />} />
 					</Routes>
 				</Layout>
 			</BrowserRouter>
