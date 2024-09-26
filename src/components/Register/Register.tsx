@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import * as styles from "./Register.module.css";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import urlRegex from "../../tools/ts/urlReg";
 import { register } from "ts-node";
 import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
+import { tokenContext } from "../../context/tokenContext";
 
 interface IRegisterProps {}
 
@@ -31,26 +32,30 @@ const schema = Yup.object<IFormData>().shape({
 
 export default function Register(props: IRegisterProps) {
 	const {} = props;
+	const { token: token, updateToken: updateToken } = useContext(tokenContext);
 	const {
 		register,
 		formState: { errors: errors },
 		handleSubmit,
 		reset,
-        
-	} = useForm({ resolver: yupResolver(schema)});
+	} = useForm({ resolver: yupResolver(schema) });
 
 	function sendRegisterData(data: IFormData) {
-        
-        async function sendForm(){
-            try{
-                let response = await axios.post("http://localhost:8000/user/api/register", data)
-                let token = response.data
-                console.log(token)
-            }catch(err: AxiosError | any){
-                console.log(err.message)
-            }
-        }
-        sendForm()
+		async function sendForm() {
+			try {
+				let response = await axios.post(
+					"http://localhost:8000/user/api/register",
+					data
+				);
+				let token = response.data;
+				console.log(token);
+				localStorage.setItem("token", token.token);
+				updateToken();
+			} catch (err: AxiosError | any) {
+				console.log(err.message);
+			}
+		}
+		sendForm();
 		console.log(data);
 		reset();
 	}

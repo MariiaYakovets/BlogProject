@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as styles from "./Posts.module.css";
 import usePosts from "../../hooks/usePosts";
 import { Vortex } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import { userContext } from "../../context/userContext";
 
 interface IPostsProps {}
 
 export default function Posts(props: IPostsProps) {
 	const {} = props;
 	const { posts: posts, error: error, loading: loading } = usePosts();
+	const {user, setUser} = useContext(userContext)
 	return (
 		<div className={styles.Posts}>
+			<h1>{user.name}</h1>
 			{loading ? (
 				<Vortex
 					visible={true}
